@@ -1,0 +1,465 @@
+<html>
+<head>
+	<style>
+		/* Base Presentation Styles */
+		@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700,700italic);
+html { background-color: #e4e4e4; -moz-box-sizing: border-box; box-sizing: border-box; -webkit-font-smoothing: antialiased; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; font-weight: 400; }
+
+/* Base Presentation Styles */
+body { font-size: 2rem;  margin: 0; padding: 0 0 10em; }
+section { display:none; padding: .25em .5em; }
+section:target {display:block;}
+h1, h2, h3 {margin: 0;}
+a { text-decoration: none; }
+a:hover { color: #0099ff; }
+a[href*="//"]:after { content: "\02911"; }
+code { 
+	font-family: monospace;
+	display: block;
+	margin: 1em 0;
+	padding: 1em;
+	background-color: #fff;
+	border-radius: .5em;
+	white-space: pre;
+	overflow: auto;
+	font-size: 2rem;
+}
+code > strong {
+	color: #c00;
+}
+img {
+	max-width: 100%;
+}
+figure {}
+figure svg {
+	border: 1px dashed #ccc;
+	color: #000;
+	background-color: #0D4863;
+	font-size: 60px;
+	font-weight: bold;
+	stroke: #fff;
+	fill: rgba(255,255,255,.3);
+	stroke-width: 2;
+	stroke-linecap: square;
+}
+figcaption {
+	font-size: .5em;
+}
+#nav { 
+	position: fixed;
+	bottom: 0;
+	display: block;
+	background-color: #ccc;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 4em;
+	overflow: auto;
+}
+#nav li {
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: "…";
+	margin: 0; padding: 0;
+	width: 7%;
+	text-align: center;
+	vertical-align: top;
+	font-weight: bold;
+}
+#nav li a { 
+	display: inline-block;
+	padding: 1em; 
+	font-size: 14px;
+	color: #0D4863;
+}
+#nav li a:hover {
+	color: #fff;
+	background-color: #0D4863;
+}
+#nav li a:visited {
+	color: #fff;
+	background-color: #0D4863;
+}
+#nav li a:active {
+	color: #000;
+}
+#nav li .ie:hover {
+	background-color: rgba(255,0,0, 0.5);
+	color: #fff;
+}
+
+/* SVG Styles */
+.draw {
+	fill: rgba(255,255,255,0.3);
+	stroke: #fff;
+	stroke-width: 1.5;
+	stroke-dasharray: 2000;
+	stroke-dashoffset: 2000;
+	animation: dash 50s ease-out forwards;
+}
+.draw-slow {
+	fill: none;
+	stroke: #0D4863;
+	stroke-width: 1;
+	stroke-dasharray: 125;
+	stroke-dashoffset: 125;
+	animation: dash 15s ease-out forwards;
+}
+.loading {
+	fill: none;
+	stroke: #2ea0dd;
+	stroke-width: 5;
+	stroke-dasharray: 200;
+	stroke-dashoffset: 200;
+	animation: dash 5s ease-out forwards;
+}
+
+@keyframes dash {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+		
+	</style>
+</head>
+<body>
+	<ul id="nav">
+		<li><a href="#0">&#10084;</a></li>
+		<li><a href="#animation">animation</a></li>
+		<li><a href="#GIF">GIF</a></li>
+		<li><a href="#CSS">CSS</a></li>
+		<li><a href="#transition">transition</a></li>
+		<li><a href="#keyframe">keyframe</a></li>
+		<li><a href="#SVG">SVG</a></li>
+		<li><a href="#switch">&lt;switch&gt;</a></li>
+		<li><a href="#object">&lt;object&gt;</a></li>
+		<li><a href="#caniuse">Can I Use</a></li>
+		<li><a href="#dasharray">dasharray</a></li>
+		<li><a href="#sprite">sprite</a></li>
+		<li><a href="#polyfill">polyfil</a></li>
+		<li><a href="#video">&lt;video&gt;</a></li>
+		<li><a href="#videoJS">&lt;video&gt;+JS</a></li>
+		<li><a href="#more">more&hellip;</a></li>
+	</ul>
+
+	<section id="0">
+		<h1><figure><svg viewBox="0 0 450 100">
+				<text class="draw" x="225" y="50" fill="red" text-anchor="middle" alignment-baseline="middle">I <tspan fill="rgb(222,0,0)" stroke="none" alignment-baseline="middle">&#10084;</tspan> Animation!</text>
+		</svg></figure></h1>
+	</section>
+
+	<section id="caniuse">
+		<a href="http://caniuse.com/#search=svg"><img src="caniuse.png" alt="http://caniuse.com/#search=svg" /></a>
+	</section>
+
+	<section id="animation">
+		<h2>animation</h2>
+		<p>Animation can be implemented using CSS. Internet Explorer does not support SVG animation.</p>
+
+		<h3>dash-array</h3>
+		<svg height="200" width="600" viewBox="0 0 300 100">
+			<text class="draw-slow" x="20" y="60" fill="red" >I <tspan fill="red" stroke="none">&#10084;</tspan> SVG!</text>
+		</svg>
+
+		<h3>Dots Loading</h3>
+		<svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="rgba(255, 255, 255, 0.87)" stroke="none">
+			<style>
+			@keyframes fadeIn {  from { fill: rgba(255, 255, 255, 0.1); } }
+			.loading-dot { animation: fadeIn 0.999999s infinite alternate;}
+			.loading-dot:nth-of-type(2n) {animation-delay: 0.333333s;}
+			.loading-dot:nth-of-type(3n) {animation-delay: 0.666666s;}
+			.loading-dot:nth-of-type(4n) {animation-delay: 0.999999s;}
+			</style>
+			<circle cx="50" cy="50" r="46" stroke="none" fill="rgba(0, 0, 0, 0.87)"/>
+			<circle stroke="none" fill="#fff" class="loading-dot" cx="23" cy="50" r="8.9"/>
+			<circle stroke="none" fill="#fff" class="loading-dot" cx="50" cy="50" r="8.9"/>
+			<circle stroke="none" fill="#fff" class="loading-dot" cx="77.4" cy="50" r="8.9"/>
+		</svg>
+
+		<h3>Circle Loading</h3>
+		<object type="image/svg+xml" height="200" width="200" data="loading-circle.svg"></object>
+	</section>
+
+	<section id="GIF">
+		<h2>GIF</h2>
+		<code><img src="animation.gif" /></code>
+		<p>Pronounced "GIF"</p> 
+		
+		<p>Pros:</p>
+		<ul>
+			<li>Can be used anywhere</li>
+			<li>Easy to create in any graphics application</li>
+			<li></li>
+		</ul>
+		
+		<p>Cons:</p>
+		<ul>
+			<li>Large files sizes</li>
+			<li>Requires the use of a graphics application</li>
+			<li></li>
+		</ul>
+	</section>
+
+	<section id="CSS">
+		<h2>CSS</h2>
+		
+		<p>Pros:</p>
+		<ul>
+			<li>Can be used anywhere</li>
+			<li>Small file size</li>
+			<li>Code can be edited by hand</li>
+		</ul>
+		
+		<p>Cons:</p>
+		<ul>
+			<li>Animation not supported in IE without JS polyfills</li>
+		</ul>
+	</section>
+
+	<section id="SVG">
+		<h2>SVG</h2>
+		<code><img src="animation.svg" height="291" width="400" style="float:left; margin-right: 1em;" /></code>
+
+		<p>CSS can be used to animate SVG properties.</p>
+		
+		<p>Pros:</p>
+		<ul>
+			<li>Can be used anywhere</li>
+			<li>Small file size</li>
+			<li>Code can be edited by hand</li>
+		</ul>
+		
+		<p>Cons:</p>
+		<ul>
+			<li>Animation not supported in IE without JS polyfills</li>
+		</ul>
+	</section>
+	
+	<section id="switch">
+		<h2>&lt;switch&gt;</h2>
+		<p>&lt;switch&gt; is an SVG element that can be used to check for the existence of SVG features or language support.</p>
+		<code>&lt;switch&gt;
+	&lt;text systemLanguage="es"&gt;Hola!&lt;/text&gt;
+	&lt;text systemLanguage="en"&gt;Hello!&lt;/text&gt;
+	&lt;text systemLanguage="hi"&gt;नमस्ते&lt;/text&gt;
+	&lt;text systemLanguage="en-au"&gt;G'day!&lt;/text&gt;
+	&lt;text systemLanguage="fr"&gt;Bonjour!&lt;/text&gt;
+	&lt;text systemLanguage="en"&gt;I said, Hello!&lt;/text&gt;
+	&lt;text&gt;Fine then, I didn't want to say 'Hi' anyway.&lt;/text&gt;
+&lt;/switch&gt;
+		</code>
+		<figure>
+			<svg width="40%" viewBox="-8 -50 200 66">
+				<switch>
+					<text systemLanguage="es">Hola!</text>
+					<text systemLanguage="en">Hello!</text>
+					<text systemLanguage="hi">नमस्ते</text>
+					<text systemLanguage="en-au">G'day!</text>
+					<text systemLanguage="fr">Bonjour!</text>
+					<text systemLanguage="en">I said, Hello!</text>
+					<text>Fine then, I didn't want to say 'Hi' anyway.</text>
+				</switch>
+			</svg>
+		</figure>
+
+		<h3>requiredFeatures</h3>
+		<p>The following switch statement was written to replace the animated SVGs with an animated gif in browsers that don't support the SVG animation feature (such as Internet Explorer).</p>
+		<code>
+&lt;switch&gt;
+	&lt;g <strong>requiredFeatures="http://www.w3.org/TR/SVG11/feature#SVG-animation"</strong>&gt;
+		&lt;circle class="loading-dot" cx="23" cy="50" r="8.9"/&gt;
+		&lt;circle class="loading-dot" cx="50" cy="50" r="8.9"/&gt;
+		&lt;circle class="loading-dot" cx="77.4" cy="50" r="8.9"/&gt;
+	&lt;/g&gt;
+	&lt;image xlink:href="loading-dots-svg-backup.gif" x="0" y="0" height="100px" width="100px"&gt;&lt;/image&gt;
+&lt;/switch&gt;
+		</code>
+
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="rgba(255, 255, 255, 0.87)" stroke="none" width="400" height="400" viewBox="0 0 100 100">
+			<style>
+			
+			@keyframes fadeIn {  from { fill: rgba(255, 255, 255, 0.1); } }
+			.loading-dot { animation: fadeIn 0.999999s infinite alternate; stroke: none; fill: #fff;}
+			.loading-dot:nth-of-type(2n) {animation-delay: 0.333333s;}
+			.loading-dot:nth-of-type(3n) {animation-delay: 0.666666s;}
+			.loading-dot:nth-of-type(4n) {animation-delay: 0.999999s;}
+			
+			</style>
+			<circle cx="50" cy="50" r="46" fill="rgba(0, 0, 0, 0.87)"/>
+			<switch>
+				<g requiredFeatures="http://www.w3.org/TR/SVG11/feature#SVG-animation">
+					<circle class="loading-dot" cx="23" cy="50" r="8.9"/>
+					<circle class="loading-dot" cx="50" cy="50" r="8.9"/>
+					<circle class="loading-dot" cx="77.4" cy="50" r="8.9"/>
+				</g>
+				<image xlink:href="loading-dots-svg-backup.gif" x="0" y="0" height="100px" width="100px"></image>
+			</switch>
+		</svg>
+
+		<h3>GIF included version</h3>
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="rgba(255, 255, 255, 0.87)" stroke="none" width="400" height="400" viewBox="0 0 100 100">
+			<circle cx="50" cy="50" r="46" fill="rgba(0, 0, 0, 0.87)"/>
+			<switch>
+				<g requiredFeatures="http://www.w3.org/TR/SVG11/feature#SVG-static">
+					<image xlink:href="loading-dots-svg-backup.gif" x="0" y="0" height="100px" width="100px"></image>
+				</g>
+			</switch>
+		</svg>
+	</section>
+	
+	<section id="object">
+		<h2>&lt;object&gt;</h2>
+		<p>The &lt;object&gt; tag allows for interactivy in a linked file, much the same way that Adobe Flash used to be added to a page. Older (much older) browsers might require the use of &lt;embed&gt; to use the browser's SVG plugin.</p>
+		<code>&lt;object type="image/svg+xml" data="component.svg" width="100%" height="200" &gt;&lt;/object&gt;</code>
+		<object type="image/svg+xml" data="component.svg" width="200" height="200" ></object>
+		
+		<p>Scripting and font imports don't work when the SVG is displayed using an &lt;img&gt; element.</p>
+		<code>&lt;img src="component.svg" width="100%" height="200" /&gt;</code>
+		<img src="component.svg" width="200" height="200" />
+	</section>
+
+	<section id="dasharray">
+		<style>
+			.chart-gauge {
+				font-size: 1.5rem;
+				text-anchor: middle;
+				padding-top: 2rem;
+				max-width: 360px;
+				max-height: 360px;
+				stroke-linecap: round;
+			}
+			.chart-gauge-label {
+				fill: #117733;
+			}
+			.chart-gauge-units {
+				font-size: .5em;
+				fill: black;
+			}
+			.chart-gauge-message {
+				font-size: .5em;
+				fill: #117733;
+			}
+			.chart-gauge-base {
+				fill: none;
+				stroke: #c4c4c4;
+				stroke-width: 4.6;
+			}
+			.chart-gauge-primary {
+				fill: none;
+				stroke: url(#linear);
+				stroke-width: 5;
+				animation: load-gauge 2s linear forwards;
+			}
+			.chart-gauge-secondary {
+				fill: none;
+				stroke: url(#linear2);
+				stroke-width: 4.8;
+				animation: load-gauge 2s linear forwards;
+			}
+
+			@keyframes load-gauge {
+			to {
+				stroke-dashoffset: 0;
+			}
+			}
+		</style>
+		<svg viewBox="0 0 120 120" class="chart-gauge" fill="none" stroke-width="2">
+			<defs>
+				<linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%"   stop-color="#05a"/>
+				<stop offset="100%" stop-color="#0a5"/>
+				</linearGradient>
+				<linearGradient id="linear2" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%"   stop-color="#f10"/>
+				<stop offset="100%" stop-color="#f5a"/>
+				</linearGradient>
+			</defs>
+			<circle class="chart-gauge-base" r="57.32" cx="60" cy="60"></circle>
+			<circle class="chart-gauge-secondary" transform="rotate(-90 60 60)" stroke-dasharray="320 360" stroke-dashoffset="320" r="57.32" cx="60" cy="60"></circle>
+			<circle class="chart-gauge-primary" transform="rotate(-90 60 60)" stroke-dasharray="180 360" stroke-dashoffset="180" r="57.32" cx="60" cy="60"></circle>
+			<line stroke="#999" stroke-linecap="round"stroke-width=".25" x1="20" y1="60" x2="100" y2="60"></line>
+			<text x="60" y="66" dx="0" dy="0.66em" class="chart-gauge-message"></text>
+			<text x="60" y="20" dx="0" dy="1em" class="chart-gauge-label">2.5<tspan class="chart-gauge-units">GB</tspan></text>
+			<text x="60" y="66" fill="none" stroke="none">of</text>
+			<text x="60" y="80" dx="0" dy="0.33em" class="chart-gauge-label">5<tspan class="chart-gauge-units">GB</tspan></text>
+		</svg>
+	</section>
+
+	<section id="sprite">
+		<h2>Sprite</h2>
+		<code>&lt;circle cx="50" cy="50" r="25" /&gt;</code>
+		
+		<figure>
+			<svg width="200" height="200" viewBox="0 0 100 100">
+				<circle cx="50" cy="50" r="25" />
+			</svg>
+		</figure>
+	</section>
+	
+	<section id="script">
+		<h2>&lt;script&gt;</h2>
+		<code>&lt;script&gt;
+	function change(evt) {
+		var radius = evt.target.getAttribute("r") == 15 ? 30 : 15;
+		evt.target.setAttribute("r",radius);
+	}
+&lt;/script&gt;
+		</code>
+		<figure>
+			<svg width="200" height="200" viewBox="0 0 100 100">
+				<script>
+					function change(evt) {
+						var radius = evt.target.getAttribute("r") == 15 ? 30 : 15;
+						evt.target.setAttribute("r",radius);
+					}
+				</script>
+				<text class="draw" x="50" y="20" style="font-size:12px; text-anchor: middle; fill: white; stroke:none;">click the circles!</text>
+				<circle cx="50" cy="60" r="30" onclick="change(evt)" />
+				<circle cx="20" cy="90" r="15" onclick="change(evt)" />
+				<circle cx="80" cy="90" r="15" onclick="change(evt)" />
+			</svg>
+		</figure>
+	</section>
+	
+	<section id="video">
+		<h2>&lt;video&gt;</h2>
+		<code><video autoplay muted playsinline>
+			<source src="animation.mp4" type="video/mp4">
+		</video></code>
+		<p>The &lt;video&gt; tag...</p>
+		<code>&lt;video autoplay muted playsinline&gt;
+	&lt;source src="contact-methods-verify-animate.mp4" type="video/mp4"&gt;
+&lt;source src="contact-methods-verify-animate.ogg" type="video/ogg"&gt;
+&lt;!-- svg/gif image fallback --&gt;
+&lt;/video&gt;</code>
+	</section>
+	
+	<section id="videoJS">
+		<h2>JS for &lt;video&gt;</h2>
+		<code><video autoplay muted playsinline>
+			<source src="animation.mp4" type="video/mp4">
+		</video></code>
+		<p>The &lt;video&gt; tag...</p>
+		<code>&lt;video autoplay muted playsinline&gt;
+	&lt;source src="contact-methods-verify-animate.mp4" type="video/mp4"&gt;
+&lt;source src="contact-methods-verify-animate.ogg" type="video/ogg"&gt;
+&lt;!-- svg/gif image fallback --&gt;
+&lt;/video&gt;</code>
+	</section>
+
+	<section id="more">
+		<h2>more&hellip;</h2>
+		<ul>
+			<li><a href="http://motionandmeaning.io/episode08.html">Animation and Accessibility</a></li>
+			<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions">CSS Transitions</a></li>
+			<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations">CSS Animations</a></li>
+			<li><a href="https://shapeshifter.design/">Shape shifter</a></li>
+			
+			
+			<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG on MDN</a></li>
+			<li><a href="https://www.w3.org/Graphics/SVG/">W3C SVG Working Group</a></li>
+		</ul>
+	</section>
+</body>
+</html>
